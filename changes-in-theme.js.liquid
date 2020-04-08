@@ -1,0 +1,29 @@
+_onSelectChange: function() {
+      var variant = this._getVariantFromOptions();
+
+      this.$container.trigger({
+        type: 'variantChange',
+        variant: variant
+      });
+
+      if (!variant) {
+        return;
+      }
+      // add these line in here
+      var option1 =  variant.option1;
+      var option2 =  variant.option2;
+      var option3 =  variant.option3;
+      if(option1 == "Custom Request" || option2 == "Custom Request" || option3 == "Custom Request") {
+         $('.margin-bottom').slideDown(500);
+      } else {
+        $('.margin-bottom').slideUp(500);
+      }
+      this._updateMasterSelect(variant);
+      this._updateImages(variant);
+      this._updatePrice(variant);
+      this._updateSKU(variant);
+      this.currentVariant = variant;
+
+      if (this.enableHistoryState) {
+        this._updateHistoryState(variant);
+      }
